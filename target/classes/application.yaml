@@ -1,0 +1,30 @@
+
+
+serviceNow.url: dev78306.service-now.com
+serviceNow.port:
+serviceNow.username: admin
+serviceNow.password: Password26
+
+
+curiousMonitor:
+  url: localhost:8443
+
+
+spring:
+  application:
+    name: incident-management
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        errors-in:
+          destination: errorDetails
+          contentType: application/json
+        errors-out:
+          destination: errorDetails
+          contentType: application/json
+
+
+server.port: 8086
