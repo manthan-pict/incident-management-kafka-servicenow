@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Map;
+
 @Getter @Setter @ToString @Builder
 public class ErrorDetails {
-    private String errorDescription;
-    private String assignmentGroup;
-
+    String imageId;
+    Map<String, Integer> incDescription;
 
 }

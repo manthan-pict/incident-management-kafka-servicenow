@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 public class Controller {
@@ -23,16 +24,21 @@ public class Controller {
         return processor.incidentRequest(incidentNumber);
     }
 
-    @PostMapping("/incident/create")
-    public String createIncident(@RequestBody ErrorDetails errorDetails) throws IOException {
-        return processor.createIncident(errorDetails);
-    }
+//    @PostMapping("/incident/create")
+//    public String createIncident(@RequestBody ErrorDetails errorDetails) throws IOException {
+//        return processor.createIncident(errorDetails);
+//    }
 
     @GetMapping("/errorDetails")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void errorDetails(@RequestParam("message") String message) {
-        ErrorDetails errorDetails = ErrorDetails.builder().errorDescription(message)
-                .assignmentGroup("BAPI TEAM")
+    public void errorDetails() {
+        ErrorDetails errorDetails = ErrorDetails.builder().incDescription(new HashMap<String, Integer>() {
+            {
+                put("NullPointer", 5);
+                put("databaseConnectivityError", 8);
+                put("timeOutException", 10);
+            }
+        })
                 .build();
 
         errorHandlingService.sendErrorDetails(errorDetails);

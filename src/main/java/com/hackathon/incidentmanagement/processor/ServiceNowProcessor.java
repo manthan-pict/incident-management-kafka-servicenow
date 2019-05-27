@@ -21,9 +21,9 @@ public class ServiceNowProcessor {
         return restClient.getIncidetDetails(incidentNumber);
     }
 
-    public String createIncident(ErrorDetails errorDetails) throws IOException {
-        String response = restClient.createIncident("Null Pointer Exception", "BAPI");
-        //String response = restClient.createIncident(errorDetails.getErrorDescription(), errorDetails.getAssignmentGroup());
+    public String createIncident(String errorDesc, String assignmrntGroup) throws IOException {
+        //String response = restClient.createIncident("Null Pointer Exception", "BAPI");
+        String response = restClient.createIncident(errorDesc, assignmrntGroup);
         Map map = objectMapper.readValue(response, Map.class);
         Map result = (Map) map.get("result");
        return result.get("number").toString();

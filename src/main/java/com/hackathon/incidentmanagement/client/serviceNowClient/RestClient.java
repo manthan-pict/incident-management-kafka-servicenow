@@ -4,6 +4,7 @@ import com.hackathon.incidentmanagement.event.ErrorDetails;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@RefreshScope
 public class RestClient {
 
     @Autowired
@@ -34,6 +36,9 @@ public class RestClient {
 
     @Value("${curiousMonitor.url}")
     private String curiousMonitorURL;
+
+    @Value("${config.URL:localhost}")
+    String URL;
 
 
 
@@ -83,7 +88,7 @@ public class RestClient {
         }};
     }
 
-    public String checkAlreadyPresentIncident(ErrorDetails errorDetails) {
+    public String sendIncidentNumber(String incNumber) {
 
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
@@ -92,8 +97,8 @@ public class RestClient {
                 .build();
 
         Map<String, String> requestBody= new HashMap<>();
-        requestBody.put("errorDescription", errorDetails.getErrorDescription());
-        requestBody.put("assignmentGroup", errorDetails.getAssignmentGroup());
+        //requestBody.put("errorDescription", errorDetails.getErrorDescription());
+        //requestBody.put("assignmentGroup", errorDetails.getAssignmentGroup());
 
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(uriComponents.toUriString(), HttpMethod.GET,new HttpEntity<>(requestBody, createHeaders()),String.class);
