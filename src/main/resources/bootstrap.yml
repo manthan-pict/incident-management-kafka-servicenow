@@ -3,7 +3,7 @@ cloud:
     host: ${CONSUL:localhost}
     port: 8500
     #To disable the Consul Discovery Client
-    enabled: false
+    enabled: true
     discovery:
       tags: foo=bar
       #For TLS update http to https in scheme
