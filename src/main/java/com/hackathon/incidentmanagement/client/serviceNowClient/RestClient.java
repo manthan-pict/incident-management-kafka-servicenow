@@ -34,7 +34,7 @@ public class RestClient {
     @Value("${serviceNow.url}")
     private String url;
 
-    @Value("${curiousMonitor.url}")
+    @Value("${consul.URL}")
     private String curiousMonitorURL;
 
     @Value("${config.URL:localhost}")

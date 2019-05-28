@@ -8,7 +8,6 @@ cloud:
       tags: foo=bar
       #For TLS update http to https in scheme
       scheme: http
-      healthCheckPath: /status
       #        healthCheckUrl: ${req.protocol}://localhost:${server.port}${spring.cloud.consul.discovery.healthCheckPath}
       healthCheckInterval: 30s
       #To disable the service registration

@@ -17,13 +17,13 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: ${kafka.url}
       bindings:
         errors-in:
-          destination: errorDetails
+          destination: ${topic.errorsIn}
           contentType: application/json
         errors-out:
-          destination: errorDetails
+          destination: ${topic.errorsIn}
           contentType: application/json
 
 
