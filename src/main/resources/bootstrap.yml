@@ -1,15 +1,16 @@
-cloud:
-  consul:
-    host: ${CONSUL:localhost}
-    port: 8500
-    #To disable the Consul Discovery Client
-    enabled: true
-    discovery:
-      tags: foo=bar
-      #For TLS update http to https in scheme
-      scheme: http
-      #        healthCheckUrl: ${req.protocol}://localhost:${server.port}${spring.cloud.consul.discovery.healthCheckPath}
-      healthCheckInterval: 30s
-      #To disable the service registration
-      register: true
+spirng:
+  cloud:
+    consul:
+      host: ${CONSUL:localhost}
+      port: 8500
+      #To disable the Consul Discovery Client
+      enabled: true
+      discovery:
+        tags: foo=bar
+        #For TLS update http to https in scheme
+        scheme: http
+        #        healthCheckUrl: ${req.protocol}://localhost:${server.port}${spring.cloud.consul.discovery.healthCheckPath}
+        healthCheckInterval: 30s
+        #To disable the service registration
+        register: true
 
